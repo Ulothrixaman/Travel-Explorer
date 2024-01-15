@@ -1,0 +1,33 @@
+{%extends 'base.html' %}
+
+
+
+{%block title%} Post {%endblock%}
+
+{%block content%}
+
+<div class="container-costum">
+    <div class="row">
+        <div class="col s12 12 l12">
+
+            <h2>{{post.title}}</h2>
+
+            <p>({{post.title}})</p>
+
+            <img src="/media/{{post.image}}" class="responsive-img">
+
+            <br>
+
+            <p>
+                {{post.content | safe}}
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+{%endblock%}

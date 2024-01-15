@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+
+
+{%block title%} Travel Website {%endblock%}
+
+
+{%block content%}
+
+<!-- Home Section Starts -->
+  <div class="home">
+    <div class="content">
+      <h5>Welcome To World</h5>
+      <h1>Visit <span class="changecontent"></span></h1>
+      <p>Embark on Your Extraordinary Journey: Where Dreams Take Flight and Adventures Come to Life!</p>
+      <a href="/book">Book Place</a>
+    </div>
+  </div>
+<!-- Home Section ends -->
+
+<!-- Section Gallery Starts -->
+  <section class="gallary" id="gallary">
+    <div class="container">
+
+      <div class="main-text">
+        <h1><span>G</span>allery</h1>
+      </div>
+
+      <div class="row" style="margin-top: 30px;">
+
+        {% for gal in gals %}
+        <div class="col-md-4 py-3 py-md-0" style="margin: 15px 0">
+          <div class="card">
+            <img src="/media/{{gal.image}}" alt="" height="230px">
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </section>
+<!-- Section Gallery ends -->
+
+<!-- About Starts -->
+  <section class="about" id="about">
+    <div class="container">
+
+      <div class="main-text">
+        <h1>About <span>Us</span></h1>
+      </div>
+
+      <div class="row" style="margin-top: 50px;">
+
+        <div class="col-md-6 py-3 py-md-0">
+          <div class="card">
+            <img src="../media/about-img.png" alt="">
+          </div>
+        </div>
+
+        <div class="col-md-6 py-3 py-md-0">
+          <h2>How Traval Agency Work</h2>
+          <p>Travel agencies serve as intermediaries, connecting travelers with tailored experiences. Clients share their preferences, and agencies leverage partnerships with airlines, hotels, and tour operators to curate personalized itineraries. From booking flights to arranging accommodations, these agencies simplify travel logistics, ensuring a seamless journey...</p>
+          <a href="/about"><button id="about-btn">Read More</button></a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- About Ends -->
+
+{%endblock%}

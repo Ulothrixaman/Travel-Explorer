@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %} Packages {% endblock %}
+
+{%block content %}
+
+<!-- Section Packages Starts -->
+<section class="packages" id="packages" xmlns="http://www.w3.org/1999/html">
+    <div class="container">
+
+      <div class="main-text">
+        <h1><span>P</span>ackages</h1>
+      </div>
+
+      <div class="row" style="margin-top: 30px;">
+
+        {% for pak in packs %}
+        <div class="col-md-4 py-3 py-md-0" style="margin: 15px 0; ">
+          <div class="card" style="height: 100%;">
+            <a href="/packages/{{pak.url}}"><img src="/media/{{pak.pack_img}}" alt="" class="img-fluid"></a>
+            <div class="card-body" style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+              <h3>{{pak.title}}</h3>
+              <p style="max-height: 100px; overflow: auto;">{{pak.description | truncatewords:15 | safe}}</p>
+
+              </div>
+              <div >
+                <div class="star">
+                <i class="fa-solid fa-star checked"></i>
+                <i class="fa-solid fa-star checked"></i>
+                <i class="fa-solid fa-star checked"></i>
+                <i class="fa-solid fa-star checked"></i>
+                <i class="fa-solid fa-star checked"></i>
+              </div>
+              <h6>Price: <strong>{{pak.price}}</strong></h6>
+              <a href="/book?dest={{pak.title}}">Book Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+        </div>
+      </div>
+</section>
+  <!-- Section Packages Ends -->
+
+
+
+
+
+{% endblock %}
