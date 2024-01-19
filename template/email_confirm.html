@@ -1,0 +1,14 @@
+{% autoescape off %}
+
+Hello {{ name }},
+
+Welcome to Travel - your ultimate destination for seamless travel experiences! We are thrilled to have you on board and
+can't wait for you to explore the exciting features and exclusive content we have to offer.
+
+To ensure the security of your account and provide you with the best possible experience, we kindly request you to
+confirm your account by clicking on the following link:
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+
+{% endautoescape %}

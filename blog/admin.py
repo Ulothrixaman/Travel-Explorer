@@ -1,24 +1,12 @@
 from django.contrib import admin
-from .models import Category, Post, Gallery, Packages, Services
+from .models import Gallery, Packages, Services, Trips
 
 
 # Register your models here.
 
-# for configuration of Category Admin
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('image_tag', 'title', 'description', 'url', 'add_date')
-    search_fields = ('title',)
 
-
-class PostAdmin(admin.ModelAdmin):
-    list_display = ('image_pot', 'title',)
-    search_fields = ('title',)
-    list_filter = ('cat',)
-    list_per_page = 5
-
-    class Media:
-        js = ('js/style.js',)
-
+# class Media:
+#     js = ('js/style.js',)
 
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('gal_img',)
@@ -32,13 +20,16 @@ class PackagesAdmin(admin.ModelAdmin):
 
 
 class ServicesAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', )
-    search_fields = ('url', )
+    list_display = ('title', 'description',)
+    search_fields = ('url',)
     list_per_page = 10
 
 
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Post, PostAdmin)
+class TripAdmin(admin.ModelAdmin):
+    list_display = ('user', )
+
+
 admin.site.register(Gallery, GalleryAdmin)
 admin.site.register(Packages, PackagesAdmin)
 admin.site.register(Services, ServicesAdmin)
+admin.site.register(Trips, TripAdmin)

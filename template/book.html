@@ -7,76 +7,77 @@
 {%block content%}
 
 <!-- Section Book Starts -->
-  <section class="book" id="book">
-    <div class="container">
-      <div class="main-text">
-        <h1><span>B</span>ook</h1>
+<section class="book" id="book">
+  <div class="container">
+    <div class="main-text">
+      <h1><span>B</span>ook</h1>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6 py-3 py-md-0">
+        <div class="card">
+          <img src="../media/book-img.png" alt="">
+        </div>
       </div>
 
-      <div class="row">
+      <div class="col-md-6 py-3 py-md-0">
+        <form action="#" id="myForm">
 
-        <div class="col-md-6 py-3 py-md-0">
-          <div class="card">
-            <img src="../media/book-img.png" alt="">
+          <input type="text" name="destination" class="form-control" placeholder="Destination" required><br>
+          <input type="text" name="num" class="form-control" placeholder="Number Of Passenger" required><br>
+          <input type="date" name="departure" class="form-control" placeholder="Departure" required><br>
+          <input type="date" name="arrival" class="form-control" placeholder="Arrival" required><br>
+          <h6><strong>Passenger 1</strong></h6>
+          <div style="display: flex; justify-content: space-between; ">
+            <input type="text" name="fname" class="form-control" placeholder="First Name" required>
+            <input type="text" name="lname" class="form-control" placeholder="Last Name" style="margin-left:5px;"
+              required><br>
           </div>
-        </div>
+          <br>
+          <input type="number" name="age" class="form-control" placeholder="Age" required><br>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" name="gender" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false" id="genderDropdown">
+              Gender
+            </button>
+            <ul class="dropdown-menu" style="padding-left: 10px;">
+              <input type="radio" class="genderRadio" id="male" name="gender" value="male">
+              <label for="male">Male</label><br>
+              <input type="radio" class="genderRadio" id="female" name="gender" value="female">
+              <label for="female">Female</label><br>
+              <input type="radio" class="genderRadio" id="other" name="gender" value="other">
+              <label for="male">Other</label>
+            </ul>
+          </div>
+          <input type="submit" value="Book Now" class="submit" required>
 
-        <div class="col-md-6 py-3 py-md-0">
-          <form action="#" id="myForm">
-
-            <input type="text" name="destination" class="form-control"  placeholder="Destination" required><br>
-            <input type="text" name="num" class="form-control" placeholder="Number Of Passenger" required><br>
-            <input type="date" name="departure" class="form-control" placeholder="Departure" required><br>
-            <input type="date" name="arrival" class="form-control" placeholder="Arrival" required><br>
-            <h6><strong>Passenger 1</strong></h6>
-            <div style="display: flex; justify-content: space-between; ">
-              <input type="text" name="fname" class="form-control" placeholder="First Name" required>
-              <input type="text" name="lname" class="form-control" placeholder="Last Name" style="margin-left:5px;" required><br>
-            </div>
-            <br>
-            <input type="number" name="age" class="form-control" placeholder="Age" required><br>
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" name="gender" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false" id="genderDropdown">
-                Gender
-              </button>
-              <ul class="dropdown-menu" style="padding-left: 10px;">
-                <input type="radio" class="genderRadio" id="male" name="gender" value="male">
-                <label for="male">Male</label><br>
-                <input type="radio" class="genderRadio" id="female" name="gender" value="female">
-                <label for="female">Female</label><br>
-                <input type="radio" class="genderRadio" id="other" name="gender" value="other">
-                <label for="male">Other</label>
-              </ul>
-            </div>
-            <input type="submit" value="Book Now" class="submit" required>
-
-          </form>
-        </div>
-
+        </form>
       </div>
 
     </div>
-  </section>
 
-  <script>
-    // Add event listener to radio buttons
-    let myForm = document.getElementById('myForm');
-    let qValue = location.search.split('=');
-    if(qValue.length>1){
-      myForm.destination.value=qValue[1];
-    }
-    const genderRadios = document.querySelectorAll('.genderRadio');
-    const genderDropdown = document.getElementById('genderDropdown');
+  </div>
+</section>
 
-    genderRadios.forEach(radio => {
-      radio.addEventListener('change', function () {
-        // Update dropdown button text with selected gender
-        genderDropdown.innerText = this.value.charAt(0).toUpperCase() + this.value.slice(1);
-        $('.dropdown-toggle').dropdown('toggle');
-      });
+<script>
+  // Add event listener to radio buttons
+  let myForm = document.getElementById('myForm');
+  let qValue = location.search.split('=');
+  if (qValue.length > 1) {
+    myForm.destination.value = qValue[1];
+  }
+  const genderRadios = document.querySelectorAll('.genderRadio');
+  const genderDropdown = document.getElementById('genderDropdown');
+
+  genderRadios.forEach(radio => {
+    radio.addEventListener('change', function () {
+      // Update dropdown button text with selected gender
+      genderDropdown.innerText = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+      $('.dropdown-toggle').dropdown('toggle');
     });
-  </script>
+  });
+</script>
 <!-- Section Book Ends -->
 
 

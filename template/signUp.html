@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%} Sign Up {%endblock%}</title>
+
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style1.css'%}">
+
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap Link -->
+
+
+    <!-- Font Awesome Cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <!-- Font Awesome Cdn -->
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+</head>
+
+<body>
+
+    <!-- signUp Starts -->
+
+    <body style="background: #f9f9f9;">
+        <section class="signup" id="signup">
+            <div class="container">
+
+                <div class="card card-body">
+                    <div class="main-text">
+                        <h1 style="margin-top: 0;"><span>R</span>EGISTER</h1>
+                    </div>
+                    <div class="row justify-content-center">
+
+                        <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                            <div>
+                                <img src="../media/book-img.png" class="img-fluid" alt="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                            <form action="/" id="myForm" method="post">
+                                {% csrf_token %}
+
+                                <input type="text" name="username" class="form-control" placeholder="Username" required>
+                                <div style="display: flex; justify-content: space-between; ">
+                                    <input type="text" name="fname" class="form-control mt-3" placeholder="First Name"
+                                        required>
+                                    <input type="text" name="lname" class="form-control mt-3" placeholder="Last Name"
+                                        style="margin-left:5px;" required>
+                                </div>
+                                <input type="email" name="email" class="form-control mt-3" placeholder="Email" required>
+                                <input type="password" name="pass1" class="form-control mt-3" placeholder="Password"
+                                    required>
+                                <input type="text" name="pass2" class="form-control mt-3" placeholder="Confirm Password"
+                                    required>
+
+                                <input type="number" name="age" class="form-control mt-3" placeholder="Age" required
+                                    id="num">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle mt-3" name="gender" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false" id="genderDropdown">
+                                        Gender
+                                    </button>
+                                    <ul class="dropdown-menu" style="padding-left: 10px;">
+                                        <input type="radio" class="genderRadio" id="male" name="gender" value="male">
+                                        <label for="male">Male</label><br>
+                                        <input type="radio" class="genderRadio" id="female" name="gender"
+                                            value="female">
+                                        <label for="female">Female</label><br>
+                                        <input type="radio" class="genderRadio" id="other" name="gender" value="other">
+                                        <label for="male">Other</label>
+                                    </ul>
+                                </div>
+                                <input type="submit" value="SIGN UP" class="submit" required>
+                                <a href="/signin"><input type="button" value="LOGIN" class="button" required></a>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <script>
+            // Add event listener to radio buttons
+            let myForm = document.getElementById('myForm');
+            let qValue = location.search.split('=');
+            if (qValue.length > 1) {
+                myForm.destination.value = qValue[1];
+            }
+            const genderRadios = document.querySelectorAll('.genderRadio');
+            const genderDropdown = document.getElementById('genderDropdown');
+
+            genderRadios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    // Update dropdown button text with selected gender
+                    genderDropdown.innerText = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+                    $('.dropdown-toggle').dropdown('toggle');
+                });
+            });
+        </script>
+        <!-- signUp Ends -->
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>

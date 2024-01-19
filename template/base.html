@@ -27,40 +27,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
   <!-- Google Fonts -->
 </head>
+
 <body>
 
 
-<!-- NavBar Starts -->
-  <nav class="navbar navbar-expand-lg" id="navbar">
-    <div class="container">
-        <a class="navbar-brand" href="/home" id="logo"><span><i class="fa-solid fa-plane-up"></i>T</span>ravel</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-        <span><i class="fa-solid fa-bars"></i></span>
+  <!-- NavBar Starts -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/home" id="logo"><span><i class="fa-solid fa-plane-up"></i>T</span>ravel</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="mynavbar">
-        <ul class="navbar-nav me-auto">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" href="/home">Home</a>
+            <a class="nav-link active" aria-current="page" href="/home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/book">Book</a>
+            <a class="nav-link active" aria-current="page" href="/book">Book</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/packages">Packages</a>
+            <a class="nav-link active" aria-current="page" href="/packages">Packages</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/services">Services</a>
+            <a class="nav-link active" aria-current="page" href="/services">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/home/#gallary">Gallary</a>
+            <a class="nav-link active" aria-current="page" href="/home/#gallary">Gallery</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/about">About Us</a>
+            <a class="nav-link active" aria-current="page" href="/about">About Us</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#"> <i class="fas fa-user-alt pe-2"></i>My Profile</a></li>
+              <li><a class="dropdown-item" href="#"> <i class="fas fa-door-open pe-2"></i>Logout</a></li>
+            </ul>
           </li>
         </ul>
+        {%else%}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/signup">Sign Up</a>
+        </li>
+        {%endif%}
         <form class="d-flex">
-          <input class="form-control me-2" type="text" placeholder="Search">
-          <button class="btn btn-primary" type="button">Search</button>
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
     </div>
@@ -69,13 +87,13 @@
 
 
 
-    {%block content%}
+  {%block content%}
 
 
-    {%endblock%}
+  {%endblock%}
 
 
-<!-- Footer Starts -->
+  <!-- Footer Starts -->
   <footer id="footer">
     <h1><span><i class="fa-solid fa-plane-up"></i>T</span>ravel</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, dignissimos.</p>
@@ -96,11 +114,12 @@
   <!-- Footer ends -->
 
 
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

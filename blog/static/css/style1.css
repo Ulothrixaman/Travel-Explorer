@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,27 +7,33 @@
     scroll-behavior: smooth;
     font-family: 'Lato', sans-serif;
 }
+
 /* Navbar Starts */
-#navbar{
+#navbar {
     background: #f9f9f9;
 }
-#logo{
+
+#logo {
     font-size: 36px;
     font-weight: 550;
     color: black;
     text-shadow: 0px 1px 1px black;
     margin-bottom: 5px;
 }
-#logo span{
+
+#logo span {
     color: #ffa500;
 }
-.navbar-toggler span{
-    color:#ffa500
+
+.navbar-toggler span {
+    color: #ffa500
 }
-.navbar-nav{
+
+.navbar-nav {
     margin-left: 20px;
 }
-.nav-item .nav-link{
+
+.nav-item .nav-link {
     font-size: 16px;
     font-weight: 550;
     color: black;
@@ -35,62 +41,103 @@
     border-radius: 3px;
     transition: 0.2s ease;
 }
-.nav-item .nav-link:hover{
+
+.nav-item .nav-link:hover {
     background: #ffa500;
     color: white;
 }
-#navbar form button{
+
+#navbar form button {
     background: orange;
     color: white;
     border: none;
 }
+
 /* Navbar Ends */
 
 /* Home section Starts*/
-.home{
+.home {
     width: 100%;
     height: 90vh;
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('../../media/background-img.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url(../../../media/background-img.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
-.home .content{
+
+.home .content {
     text-align: center;
     padding-top: 200px;
 }
-.home .content h5{
+
+.home .content h5 {
     color: white;
     font-size: 38px;
     font-weight: 550;
     text-shadow: 0px 1px 1px black;
 }
-.home .content h1{
+
+.home .content h1 {
     color: white;
     font-size: 70px;
     font-weight: 550;
     text-shadow: 0px 1px 1px black;
     margin-top: 5px;
 }
-.changecontent::after{
+
+.changecontent::after {
     content: ' ';
     color: #ffa500;
     text-shadow: 0px 1px 1px black;
     animation: changetxt 10s infinite linear;
 }
-@keyframes changetxt{
-    0%{content: "France";}
-    10%{content: "Spain";}
-    20%{content: "United States";}
-    30%{content: "China";}
-    40%{content: "India";}
-    50%{content: "Pakistan";}
-    60%{content: "Italy";}
-    70%{content: "Turkey";}
-    80%{content: "Mexico";}
-    90%{content: "Germany";}
-    100%{content: "United Kingdom";}
+
+@keyframes changetxt {
+    0% {
+        content: "France";
+    }
+
+    10% {
+        content: "Spain";
+    }
+
+    20% {
+        content: "United States";
+    }
+
+    30% {
+        content: "China";
+    }
+
+    40% {
+        content: "India";
+    }
+
+    50% {
+        content: "Pakistan";
+    }
+
+    60% {
+        content: "Italy";
+    }
+
+    70% {
+        content: "Turkey";
+    }
+
+    80% {
+        content: "Mexico";
+    }
+
+    90% {
+        content: "Germany";
+    }
+
+    100% {
+        content: "United Kingdom";
+    }
 }
-.home .content p{
+
+.home .content p {
     color: white;
     font-size: 15px;
     font-weight: 600;
@@ -98,7 +145,8 @@
     margin-bottom: 30px;
     margin-top: 5px;
 }
-.home .content a{
+
+.home .content a {
     padding: 10px;
     background: white;
     color: black;
@@ -108,50 +156,84 @@
     text-decoration: none;
     transition: 0.5s;
 }
-.home .content a:hover{
-     background: #ffa500;
-     color: white;
+
+.home .content a:hover {
+    background: #ffa500;
+    color: white;
 }
-@media (max-width:850px){
-    .home{
+
+@media (max-width:850px) {
+    .home {
         background-position: 50%;
     }
 }
-@media (max-width:450px){
-    .home .content h5{
+
+@media (max-width:450px) {
+    .home .content h5 {
         font-size: 25px;
     }
-    .home .content h1{
+
+    .home .content h1 {
         font-size: 38px;
     }
-    .home .content p{
+
+    .home .content p {
         font-size: 13px;
     }
 }
+
 /* Home section Ends*/
 
 /* Section Book Starts */
-.book{
-    background: #fffbf4;
-    margin-top: 50px;
+.book {
+    background: #f9f9f9;
     padding: 50px;
 }
-.main-text h1{
+
+.signup {
+    background: #f9f9f9;
+}
+
+.main-text h1 {
     text-align: center;
     text-shadow: 0px 1px 1px black;
     font-weight: 600;
 }
-.main-text h1 span{
+
+.main-text h1 span {
     color: #ffa500;
 }
-.book .card{
+
+.book .card {
     border-radius: 10px;
     box-shadow: 0px 5px 5px -6px black;
 }
-.book .row{
-    margin-top: 30px   ;
+
+.signup .card {
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px -6px black;
 }
-.book form input{
+
+.login .card {
+    margin-top: 2%;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px -6px black;
+}
+
+.book .row {
+    margin-top: 30px;
+}
+
+.signup .row {
+    margin-top: 30px;
+}
+
+.login .row {
+    margin-top: 30px;
+}
+
+.book form input {
     padding: 10px;
     color: black;
     border: none;
@@ -161,7 +243,31 @@
     box-shadow: 0px 5px 5px -6px black;
 }
 
-.book form .dropdown button{
+.login form input {
+    padding: 10px;
+    color: black;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px -6px black;
+}
+
+.signup form input {
+    padding: 10px;
+    color: black;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px -6px black;
+}
+
+.signup #num::-webkit-inner-spin-button {
+    display: none;
+}
+
+.book form .dropdown button {
     background: #fff;
     color: black;
     outline: none;
@@ -170,14 +276,58 @@
     box-shadow: 0px 5px 5px -6px black;
 }
 
-.book form textarea{
+.signup form .dropdown button {
+    background: #fff;
+    color: black;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px -6px black;
+}
+
+.signup .img-fluid {
+    transition: all 1s;
+
+}
+
+.signup .img-fluid:hover {
+    transform: scale(1.1);
+}
+
+.login .img-fluid {
+    transition: all 1s;
+
+}
+
+.login .img-fluid:hover {
+    transform: scale(1.1);
+}
+
+.book form textarea {
     border: none;
     border-radius: 10px;
     resize: none;
     box-shadow: 0px 5px 5px -6px black;
     height: 200px;
 }
-.book .submit{
+
+.signup form textarea {
+    border: none;
+    border-radius: 10px;
+    resize: none;
+    box-shadow: 0px 5px 5px -6px black;
+    height: 200px;
+}
+
+.login form textarea {
+    border: none;
+    border-radius: 10px;
+    resize: none;
+    box-shadow: 0px 5px 5px -6px black;
+    height: 200px;
+}
+
+.book .submit {
     width: 160px;
     font-size: 16px;
     font-weight: 550;
@@ -186,129 +336,222 @@
     margin-top: 10px;
     transition: 0.5s;
 }
-.book .submit:hover{
+
+.signup .submit {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 550;
+    background: #ffa500;
+    color: white;
+    margin-top: 10px;
+    transition: 0.5s;
+}
+
+.login .submit {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 550;
+    background: #ffa500;
+    color: white;
+    margin-top: 10px;
+    transition: 0.5s;
+}
+
+.signup .submit:hover {
+    background: #ff7b00;
+}
+
+.login .submit:hover {
+    background: #ff7b00;
+}
+
+.signup .button {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 550;
+    background: #00b8ff66;
+    color: black;
+    margin-top: 10px;
+    transition: 0.5s;
+    margin-left: 5px;
+}
+
+.login .button {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 550;
+    background: #00b8ff66;
+    color: black;
+    margin-top: 10px;
+    transition: 0.5s;
+    margin-left: 5px;
+}
+
+.signup .button:hover {
+    background: #08658dc2;
+    color: white;
+    transition: 0.25s;
+}
+
+.login .button:hover {
+    background: #08658dc2;
+    color: white;
+    transition: 0.25s;
+}
+
+.book .submit:hover {
     width: 170px;
 }
-@media (max-width:765px){
-    .book{
+
+@media (max-width:765px) {
+    .book {
         padding: 0;
     }
-    .main-text{
+
+    .main-text {
         padding: 20px;
     }
 }
+
 /* Section Book Ends */
 
 /* Section Packages Starts */
-.main-text h1{
+.main-text h1 {
     text-align: center;
     margin-top: 30px;
     font-weight: 600;
     text-shadow: 0px 1px 1px black;
 }
-.main-text h1 span{
+
+.main-text h1 span {
     color: #ffa500;
 }
-.packages .card{
+
+.packages .card {
     border-radius: 5px;
     border: none;
-    box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
-.packages .card img{
+
+.packages .card img {
     border-radius: 5px;
+    height: 100%;
+    width: 100%;
 }
-.packages .card .card-body{
+
+.packages .card .card-body {
     background: transparent;
 }
-.packages .card .card-body h3{
+
+.packages .card .card-body h3 {
     font-size: 25px;
     font-weight: 600;
 }
-.packages .card .card-body p{
+
+.packages .card .card-body p {
     font-size: 15px;
 }
-.checked{
+
+.checked {
     color: #ffa500;
 }
-.star i{
+
+.star i {
     font-size: 15px;
 }
-.packages .card .card-body h6{
+
+.packages .card .card-body h6 {
     font-size: 20px;
 }
-.packages .card .card-body a{
+
+.packages .card .card-body a {
     padding: 10px;
     text-decoration: none;
     background: #ffa500;
     color: white;
     border-radius: 5px;
 }
+
 /* Section Packages Ends */
 
 
 /* Section Services Starts */
-.services{
+.services {
     background: #f9f9f9;
     margin-top: 50px;
 }
-.services .card{
-    box-shadow: rgba(0,0,0,0.1) 0px 4px 12px ;
+
+.services .card {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     border: none;
     cursor: pointer;
 }
-.services .card i{
+
+.services .card i {
     font-size: 80px;
     text-align: center;
     color: #ffa500;
     margin-top: 20px;
 }
-.services .card .card-body h3{
+
+.services .card .card-body h3 {
     font-weight: 600;
 }
-.services .card .card-body{
+
+.services .card .card-body {
     text-align: center;
 }
+
 /* Section Services Ends */
 
 
 /* Section Gallary Starts */
-.gallary{
+.gallary {
     margin-top: 50px;
 }
-.gallary .card{
+
+.gallary .card {
     border-radius: 10px;
-    box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     cursor: pointer;
 }
-.gallary .card img{
+
+.gallary .card img {
     border-radius: 10px;
     transition: 0.5s;
 }
-.gallary .card img:hover{
+
+.gallary .card img:hover {
     transform: scale(1.1);
 }
+
 /* Section Gallary Ends */
 
 
 /* About Starts */
-.about{
+.about {
     margin-top: 50px;
     background: #f9f9f9;
 }
-.about .card{
+
+.about .card {
     border-radius: 10px;
 }
-.about .card img{
+
+.about .card img {
     border-radius: 10px;
 }
-.about h2{
+
+.about h2 {
     font-weight: 600;
     letter-spacing: 1px;
 }
-.about p{
+
+.about p {
     font-weight: 500;
 }
-#about-btn{
+
+#about-btn {
     width: 150px;
     height: 38px;
     border: none;
@@ -320,28 +563,33 @@
     transition: 0.5s ease;
     cursor: pointer;
 }
-#about-btn:hover{
+
+#about-btn:hover {
     width: 170px;
 }
-@media (max-width:765px){
-    .about{
+
+@media (max-width:765px) {
+    .about {
         padding: 0;
     }
 }
+
 /* About Ends */
 
 
 /* footer Starts */
-#footer{
+#footer {
     width: 100%;
-    margin-top: 100px;
+    margin-top: 150px;
     text-align: center;
     background: #f9f9f9;
 }
-#footer h1 span{
+
+#footer h1 span {
     color: #ffa500;
 }
-.social-links i{
+
+.social-links i {
     padding: 10px;
     border-radius: 5px;
     font-size: 20px;
@@ -352,7 +600,33 @@
     transition: 0.5s ease;
     cursor: pointer;
 }
-.social-links i:hover{
+
+.social-links i:hover {
     background: #ffa500;
 }
+
 /* footer Ends */
+.modal-content {
+    align-items: center;
+    text-align: center;
+    color: #ffa500;
+    font-size: 30px;
+    font-weight: 300;
+    font-family: 'Lato', sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 15px !important;
+}
+
+.modal-content button {
+    font-size: 20px;
+    background: rgba(255, 0, 0, 0.774);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.dropdown-menu .dropdown-item{
+    width: 90%;
+}
+.dropdown-menu .dropdown-item:active{
+    background-color: #ff7b00;
+}
