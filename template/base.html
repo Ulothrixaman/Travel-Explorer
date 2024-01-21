@@ -66,15 +66,19 @@
               Profile
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#"> <i class="fas fa-user-alt pe-2"></i>My Profile</a></li>
-              <li><a class="dropdown-item" href="#"> <i class="fas fa-door-open pe-2"></i>Logout</a></li>
+              <li><a class="dropdown-item" href="/profile/"> <i class="fas fa-user-alt pe-2"></i>My Profile</a></li>
+              <li><a class="dropdown-item" href="/signout/"> <i class="fas fa-door-open pe-2"></i>Logout</a></li>
             </ul>
           </li>
         </ul>
         {%else%}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/signup">Sign Up</a>
+          <a class="nav-link active" aria-current="page" href="/signup/">Sign Up</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/signin/">Sign In</a>
+        </li>
+        </ul>
         {%endif%}
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

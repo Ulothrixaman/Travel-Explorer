@@ -37,6 +37,14 @@
             <div class="container">
 
                 <div class="card card-body">
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show " role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endfor %}
                     <div class="main-text">
                         <h1 style="margin-top: 0;"><span>R</span>EGISTER</h1>
                     </div>
@@ -49,7 +57,7 @@
                         </div>
 
                         <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                            <form action="/" id="myForm" method="post">
+                            <form action="/signup/" id="myForm" method="post">
                                 {% csrf_token %}
 
                                 <input type="text" name="username" class="form-control" placeholder="Username" required>

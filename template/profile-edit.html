@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Proflie</title>
+
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style1.css'%}">
+
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap Link -->
+
+
+    <!-- Font Awesome Cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <!-- Font Awesome Cdn -->
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+</head>
+
+<!-- <img class="rounded-circle mt-5" width="150px" src="../media/about-img.png"> -->
+
+<body>
+
+    <div class="container rounded bg-white mt-5 mb-5">
+        <form class="row" action="/profile-edit/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <label for="image"><img src="../media/{{ account.image }}" alt="Generic placeholder image"
+                            class="img-fluid img-thumbnail mt-4 mb-1" style="width: 150px; z-index: 1">
+                        <p>Update Image:</p>
+                    </label>
+                    <input id="image" type="file" name="image" accept="image/*" hidden>
+                </div>
+            </div>
+            <div class="col-md-9 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">First Name</label><input type="text"
+                                class="form-control" placeholder="first name" name="sname" value="{{ fname }}"></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text"
+                                class="form-control" value="{{ lname }}" name="ename" placeholder="surname"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Mobile Number</label><input type="text"
+                                class="form-control" placeholder="enter phone number" name="phone"
+                                value="{{ account.phone }}"></div>
+                        <div class="col-md-6"><label class="labels">Email ID</label><input type="text"
+                                class="form-control" placeholder="enter email id" name="pemail" value="{{ uemail }}">
+                        </div>
+                        <div class="col-md-6"><label class="labels">Age</label><input type="number" class="form-control"
+                                placeholder="age" name="age" value="{{ account.age }}"></div>
+                        <div class="col-md-6"><label class="labels">Country</label><input type="text"
+                                class="form-control" placeholder="country" name="country" value="{{ account.country }}">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">About</label><textarea name="about" id="" cols="30"
+                                rows="5" class="form-control" style="resize: none;">{{ account.about }}</textarea>
+                        </div>
+                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
+                                style="background: #ffa500; border-color: #ffa500;" type="submit">Save
+                                Profile</button></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

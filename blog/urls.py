@@ -16,17 +16,20 @@ Including another URLconf
 """
 
 from django.urls import path
-from .views import home, book, packages, services, package, about, signin, signup, activate
+from .views import home, book, packages, services, package, about, signin, signup, activate, signout, profile, profile_edit
 
 urlpatterns = [
-    path('', signup),
+    path('', home),
     path('signup/', signup),
     path('signin/', signin),
     path('home/', home),
     path('packages/<slug:url>', package),
-    path('about/', about),
+    path('about/', about),  
     path('book/', book),
     path('packages/', packages),
     path('services/', services),
+    path('signout/', signout),
+    path('profile/', profile),
+    path('profile-edit/', profile_edit),
     path('activate/<uidb64>/<token>', activate, name="activate")
 ]

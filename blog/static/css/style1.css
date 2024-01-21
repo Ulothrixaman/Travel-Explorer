@@ -53,6 +53,16 @@
     border: none;
 }
 
+.btn-outline-success {
+    color: #ffa500 !important;
+    border-color: #ffa500 !important;
+}
+
+.btn-outline-success:hover {
+    color: white !important;
+    background: #ffa500 !important;
+}
+
 /* Navbar Ends */
 
 /* Home section Starts*/
@@ -70,15 +80,17 @@
 }
 
 .home .content h5 {
+    white-space: nowrap;
+    transform: translate(-65px, 0px);
     color: white;
-    font-size: 38px;
+    font-size: 35px;
     font-weight: 550;
     text-shadow: 0px 1px 1px black;
 }
 
 .home .content h1 {
     color: white;
-    font-size: 70px;
+    font-size: 65px;
     font-weight: 550;
     text-shadow: 0px 1px 1px black;
     margin-top: 5px;
@@ -113,7 +125,7 @@
     }
 
     50% {
-        content: "Pakistan";
+        content: "Australia";
     }
 
     60% {
@@ -606,6 +618,8 @@
 }
 
 /* footer Ends */
+
+
 .modal-content {
     align-items: center;
     text-align: center;
@@ -630,3 +644,15 @@
 .dropdown-menu .dropdown-item:active{
     background-color: #ff7b00;
 }
+
+/* profile Starts */
+.btn-outline-dark {
+    color: #ffa500 !important;
+    border-color: #ffa500 !important;
+}
+.btn-outline-dark:hover {
+    color: white !important;
+    border-color: #ffa500 !important;
+    background: #ffa500 !important;
+}
+/* profile ends */

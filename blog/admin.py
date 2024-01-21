@@ -1,12 +1,15 @@
 from django.contrib import admin
-from .models import Gallery, Packages, Services, Trips
-
+from .models import Gallery, Packages, Services, Account
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
 
+# AccountAdmin
+class AccountAdmin(admin.ModelAdmin):
+    list_display = ('user',)
 
-# class Media:
-#     js = ('js/style.js',)
+
 
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('gal_img',)
@@ -32,4 +35,5 @@ class TripAdmin(admin.ModelAdmin):
 admin.site.register(Gallery, GalleryAdmin)
 admin.site.register(Packages, PackagesAdmin)
 admin.site.register(Services, ServicesAdmin)
-admin.site.register(Trips, TripAdmin)
+admin.site.register(Account, AccountAdmin)
+

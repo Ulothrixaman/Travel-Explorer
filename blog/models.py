@@ -5,6 +5,22 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
+# Account Model
+class Account(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    age = models.CharField(max_length=10, null=True, blank=True)
+    phone = models.CharField(max_length=15, null=True, blank=True)
+    image = models.ImageField(upload_to='users/', null=True, blank=True)
+    country = models.CharField(max_length=20, null=True, blank=True)
+    about = models.TextField(null=True, blank=True)
+    
+    def __str__(self):
+        return self.user.username
+    
+
+
+
 # Gallery Model
 class Gallery(models.Model):
     img_id = models.AutoField(primary_key=True)

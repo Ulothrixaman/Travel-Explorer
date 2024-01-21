@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from iblogs import settings
 from django.core.mail import EmailMessage
 from django.contrib.sites.shortcuts import get_current_site
@@ -11,7 +11,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.http import urlsafe_base64_decode
 from . tokens import generate_token
 
-from blog.models import Gallery, Packages, Services
+from blog.models import Gallery, Packages, Account
 
 
 # Create your views here.
@@ -36,23 +36,23 @@ def signup(request):
 
         if User.objects.filter(username=username):
             messages.error(request, "Username already exists!")
-            return redirect('/')
+            return redirect('/signup')
 
         if User.objects.filter(email=email):
             messages.error(request, "Email already exists")
-            return redirect('/')
+            return redirect('/signup')
 
         if len(username) > 10:
             messages.error(request, "Username must be under 10 letters")
-            return redirect('/')
+            return redirect('/signup')
 
         if pass1 != pass2:
             messages.error(request, "Password doesn't match")
-            return redirect('/')
+            return redirect('/signup')
 
         if not username.isalnum():
             messages.error(request, "Username must contain only alphanumeric charachters!")
-            return redirect('/')
+            return redirect('/signup')
 
         my_user = User.objects.create_user(username, email, pass1)
         my_user.first_name = fname
@@ -129,7 +129,6 @@ def packages(request):
 
 def package(request, url):
     packs = Packages.objects.get(url=url)
-    print(packs)
     return render(request, 'package.html', {'packs': packs})
 
 
@@ -144,7 +143,74 @@ def activate(request, uidb64, token):
         my_user.is_active = True
         my_user.save()
         login(request, my_user)
-        return redirect('/home')
+        return redirect('/signin')
 
     else:
         return render(request, 'active_failed.html')
+    
+def signout(request):
+    logout(request)
+    messages.success(request, 'You Have Been Logged Out successfully')
+    return redirect('/signin')
+
+def profile_edit(request):
+    c_user = request.user
+    fname = c_user.first_name
+    lname = c_user.last_name
+    uemail = c_user.email
+    uname = c_user.username
+    
+    try:
+        account = Account.objects.get(user=c_user)
+    except Account.DoesNotExist:
+        account = None
+    
+    if request.method=="POST":
+        age = request.POST.get('age')
+        phone = request.POST.get('phone')
+        image = request.FILES.get('image')
+        country = request.POST.get('country')
+        about = request.POST.get('about')
+        
+        if account:
+            account.age = age
+            account.phone = phone
+            account.image = image
+            account.country = country
+            account.about = about
+            account.save()
+        else:
+            new_account =  Account(user=c_user, age=age, phone=phone, country=country, about=about, image=image)  
+            new_account.save()
+        return redirect('/profile')
+        
+    data = {
+        'fname': fname,
+        'lname': lname,
+        'uemail': uemail,
+        'uname': uname,
+        'account': account,
+    }
+    return render (request, 'profile-edit.html', data)
+
+def profile(request):
+    c_user = request.user
+    fname = c_user.first_name
+    lname = c_user.last_name
+    uemail = c_user.email
+    try:
+        acc = Account.objects.get(user=c_user)
+    except Account.DoesNotExist:
+        acc = None
+    print(acc.image)
+    data = {
+        'fname': fname,
+        'lname': lname,
+        'phone': acc.phone if acc else None,
+        'age': acc.age if acc else None,
+        'country': acc.country if acc else None,
+        'about': acc.about if acc else None,
+        'uemail':uemail,
+        'image': acc.image if acc else None,
+    }
+    return render (request, 'profile.html', data)
