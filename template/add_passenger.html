@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Passenger</title>
+
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style1.css'%}">
+
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap Link -->
+
+
+    <!-- Font Awesome Cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <!-- Font Awesome Cdn -->
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+</head>
+
+<body>
+
+
+    <!-- Section Book Starts -->
+    <section class="book" id="">
+        <div class="container-fluid">
+
+            <div class="main-text">
+                <h1><span>ADD </span>PASSENGER</h1>
+            </div>
+            <div class="row">
+                <form action="/review/" id="myForm" method="post">
+                    {% csrf_token %}
+                    <div class="col-md-12 py-3 py-md-0">
+                        <h6><strong>Journey Details</strong></h6>
+                        <div style="display: flex; justify-content: space-between; ">
+                            <input type="text" name="fdate" class="form-control"
+                                value="Departure: {{booking_data.departure}}">
+                            <p><strong>TO</strong></p>
+                            <input type="text" name="ldate" class="form-control"
+                                value="Arrival: {{booking_data.arrival}}" style="margin-left:5px;"><br>
+                        </div>
+                        <br>
+                        <div style="display: flex; justify-content: space-between; ">
+                            <input type="text" name="from" class="form-control"
+                                value="Source: {{booking_data.from_s|upper}}">
+                            <p><strong>TO</strong></p>
+                            <input type="text" name="to" class="form-control"
+                                value="Destination: {{booking_data.destination|upper}}" style="margin-left:5px;"
+                                required><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for x in passengers %}
+                        <div class="col-md-6 py-3 py-md-0">
+
+                            <h6 class="mt-4"><strong>Passenger {{ x }}</strong></h6>
+                            <div style="display: flex; justify-content: space-between; ">
+                                <input type="text" name="fname{{ x }}" class="form-control" placeholder="First Name" required>
+                                <input type="text" name="lname{{ x }}" class="form-control" placeholder="Last Name"
+                                    style="margin-left:5px;" required><br>
+                            </div>
+                            <br>
+                            <input type="number" name="age{{ x }}" class="form-control" placeholder="Age" required><br>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" name="gender{{ x }}" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false" id="genderDropdown{{ x }}">
+                                    Gender
+                                </button>
+                                <ul class="dropdown-menu" style="padding-left: 10px;">
+                                    <input type="radio" class="genderRadio" id="male{{ x }}"
+                                        data-pid="genderDropdown{{ x }}" name="gender{{ x }}" value="male" required>
+                                    <label for="male{{ x }}">Male</label><br>
+                                    <input type="radio" class="genderRadio" id="female{{ x }}"
+                                        data-pid="genderDropdown{{ x }}" name="gender{{ x }}" value="female" required>
+                                    <label for="female{{ x }}">Female</label><br>
+                                    <input type="radio" class="genderRadio" id="other{{ x }}"
+                                        data-pid="genderDropdown{{ x }}" name="gender{{ x }}" value="other" required>
+                                    <label for="other{{ x }}">Other</label>
+                                </ul>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn submit" data-toggle="modal" data-target="#exampleModal">
+                        BOOK
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">BOOKING SUCCESSFUL</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 52 52">
+                                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                                            <path class="checkmark__check" fill="none"
+                                                d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                                        </svg>
+                                    </div>
+                                    <p>We sent you a mail containing Booking ID and Passengers Details</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-secondary">Home</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+        </div>
+    </section>
+
+    <script>
+        // Add event listener to radio buttons
+        let genderRadios = document.querySelectorAll('.genderRadio');
+
+        genderRadios.forEach(radio => {
+            radio.addEventListener('change', function (e) {
+
+                const genderDropdown = document.getElementById(e.target.getAttribute('data-pid'));
+                // Update dropdown button text with selected gender
+                genderDropdown.innerText = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+
+                genderDropdown.click();
+            });
+        });
+    </script>
+    <!-- Section Book Ends -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

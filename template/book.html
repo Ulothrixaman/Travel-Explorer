@@ -7,8 +7,16 @@
 {%block content%}
 
 <!-- Section Book Starts -->
-<section class="book" id="book">
+<section class="book" id="book" style="margin-top: 50px;">
   <div class="container">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show " role="alert">
+      <strong>{{ message }}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
     <div class="main-text">
       <h1><span>B</span>ook</h1>
     </div>
@@ -22,35 +30,17 @@
       </div>
 
       <div class="col-md-6 py-3 py-md-0">
-        <form action="#" id="myForm">
-
+        <form action="/book/" id="myForm" method="post">
+          {% csrf_token %}
+          <input type="text" name="from" class="form-control" placeholder="From" required><br>
           <input type="text" name="destination" class="form-control" placeholder="Destination" required><br>
           <input type="text" name="num" class="form-control" placeholder="Number Of Passenger" required><br>
+          <h6 class="mt-4"><strong>Departure Date</strong></h6>
           <input type="date" name="departure" class="form-control" placeholder="Departure" required><br>
+          <h6 class="mt-4"><strong>Arrival Date</strong></h6>
           <input type="date" name="arrival" class="form-control" placeholder="Arrival" required><br>
-          <h6><strong>Passenger 1</strong></h6>
-          <div style="display: flex; justify-content: space-between; ">
-            <input type="text" name="fname" class="form-control" placeholder="First Name" required>
-            <input type="text" name="lname" class="form-control" placeholder="Last Name" style="margin-left:5px;"
-              required><br>
-          </div>
-          <br>
-          <input type="number" name="age" class="form-control" placeholder="Age" required><br>
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" name="gender" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false" id="genderDropdown">
-              Gender
-            </button>
-            <ul class="dropdown-menu" style="padding-left: 10px;">
-              <input type="radio" class="genderRadio" id="male" name="gender" value="male">
-              <label for="male">Male</label><br>
-              <input type="radio" class="genderRadio" id="female" name="gender" value="female">
-              <label for="female">Female</label><br>
-              <input type="radio" class="genderRadio" id="other" name="gender" value="other">
-              <label for="male">Other</label>
-            </ul>
-          </div>
-          <input type="submit" value="Book Now" class="submit" required>
+
+          <input type="submit" value="Review and Book" class="submit" required>
 
         </form>
       </div>

@@ -199,7 +199,7 @@
 /* Section Book Starts */
 .book {
     background: #f9f9f9;
-    padding: 50px;
+    padding: 25px;
 }
 
 .signup {
@@ -425,9 +425,14 @@
     }
 }
 
+.book .main-text h1{
+    margin-top: 0;
+}
+
 /* Section Book Ends */
 
 /* Section Packages Starts */
+
 .main-text h1 {
     text-align: center;
     margin-top: 30px;
@@ -592,7 +597,7 @@
 /* footer Starts */
 #footer {
     width: 100%;
-    margin-top: 150px;
+    margin-top: 50px;
     text-align: center;
     background: #f9f9f9;
 }
@@ -638,10 +643,11 @@
     border-radius: 5px;
 }
 
-.dropdown-menu .dropdown-item{
+.dropdown-menu .dropdown-item {
     width: 90%;
 }
-.dropdown-menu .dropdown-item:active{
+
+.dropdown-menu .dropdown-item:active {
     background-color: #ff7b00;
 }
 
@@ -650,9 +656,84 @@
     color: #ffa500 !important;
     border-color: #ffa500 !important;
 }
+
 .btn-outline-dark:hover {
     color: white !important;
     border-color: #ffa500 !important;
     background: #ffa500 !important;
 }
+
 /* profile ends */
+
+
+/* tick animation starts */
+.wrapper {
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+}
+
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #7ac142;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards
+}
+
+.checkmark {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    margin: 10% auto;
+    box-shadow: inset 0px 0px 0px #7ac142;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0
+    }
+}
+
+@keyframes scale {
+
+    0%,
+    100% {
+        transform: none
+    }
+
+    50% {
+        transform: scale3d(1.1, 1.1, 1)
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 30px #7ac142
+    }
+}
+
+/* tick animation ends */
+
+.modal-footer button:hover{
+    background: red;
+}

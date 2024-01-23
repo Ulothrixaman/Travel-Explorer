@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.urls import path
-from .views import home, book, packages, services, package, about, signin, signup, activate, signout, profile, profile_edit
+from .views import home, book, packages, services, package, about, signin, signup, activate, signout, profile, add_pass, profile_edit, review
 
 urlpatterns = [
     path('', home),
@@ -31,5 +31,7 @@ urlpatterns = [
     path('signout/', signout),
     path('profile/', profile),
     path('profile-edit/', profile_edit),
+    path('add_pass/', add_pass),
+    path('review/', review),
     path('activate/<uidb64>/<token>', activate, name="activate")
 ]

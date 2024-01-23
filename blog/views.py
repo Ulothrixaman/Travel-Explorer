@@ -1,3 +1,5 @@
+from datetime import datetime
+import uuid
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -9,16 +11,14 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode
 from django.utils.http import urlsafe_base64_decode
+from django.core.files.storage import default_storage
+from django.core.files import File
 from . tokens import generate_token
 
 from blog.models import Gallery, Packages, Account
 
 
 # Create your views here.
-def book(request):
-    return render(request, 'book.html', {})
-
-
 def services(request):
     return render(request, 'services.html', {})
 
@@ -31,8 +31,6 @@ def signup(request):
         email = request.POST.get('email')
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
-        age = int(request.POST.get('age'))
-        gender = request.POST.get('gender')
 
         if User.objects.filter(username=username):
             messages.error(request, "Username already exists!")
@@ -121,6 +119,10 @@ def about(request):
 def packages(request):
     # load all the posts from db
     packs = Packages.objects.all()
+    if request.method=='GET':
+        pack_title = request.GET.get('packsTilte')
+        if pack_title:
+            packs = Packages.objects.filter(title__icontains=pack_title)
     data = {
         'packs': packs,
     }
@@ -168,20 +170,35 @@ def profile_edit(request):
     if request.method=="POST":
         age = request.POST.get('age')
         phone = request.POST.get('phone')
-        image = request.FILES.get('image')
+        new_image = request.FILES.get('image')
         country = request.POST.get('country')
         about = request.POST.get('about')
+        
         
         if account:
             account.age = age
             account.phone = phone
-            account.image = image
             account.country = country
             account.about = about
+            
+            if new_image:
+                
+                if account.image:
+                    default_storage.delete(account.image.name)
+                    
+                filename = default_storage.save(f'images/{c_user.username}_{new_image.name}', new_image)
+                account.image = filename
+                
             account.save()
         else:
-            new_account =  Account(user=c_user, age=age, phone=phone, country=country, about=about, image=image)  
+            if new_image:
+                filename = default_storage.save(f'images/{c_user.username}_{new_image.name}', new_image)
+            else:
+                filename = None
+            new_account =  Account(user=c_user, age=age, phone=phone, country=country, about=about, image=filename)  
+            
             new_account.save()
+            
         return redirect('/profile')
         
     data = {
@@ -202,7 +219,6 @@ def profile(request):
         acc = Account.objects.get(user=c_user)
     except Account.DoesNotExist:
         acc = None
-    print(acc.image)
     data = {
         'fname': fname,
         'lname': lname,
@@ -214,3 +230,114 @@ def profile(request):
         'image': acc.image if acc else None,
     }
     return render (request, 'profile.html', data)
+
+def book(request):
+    if request.method == 'POST':
+        from_s = request.POST.get('from')
+        destination = request.POST.get('destination')
+        num = int(request.POST.get('num'))
+        departure = request.POST.get('departure')
+        arrival = request.POST.get('arrival')
+        
+        departure_str = datetime.strptime(departure, '%Y-%m-%d')
+        arrival_str = datetime.strptime(arrival, '%Y-%m-%d')
+
+        # Check if departure date is smaller than arrival date
+        if departure_str >= arrival_str:
+            messages.error(request, "We will try to take you in past in future, for now please select a future date😊")
+            return redirect('/book')
+        
+        booking_data = {
+            'from_s': from_s,
+            'destination': destination,
+            'num': num,
+            'departure':departure,
+            'arrival': arrival
+            }
+        request.session['booking_data'] = booking_data
+        return redirect('/add_pass')
+    return render(request, 'book.html', {})
+
+
+
+def add_pass(request):
+    booking_data = request.session.get('booking_data', None)
+    
+    if 'num' in booking_data:
+        num_passengers = booking_data['num']
+    else:
+        num_passengers = 0 
+    passengers = list(range(1, num_passengers + 1))
+    
+    context ={
+        'booking_data': booking_data,
+        'passengers': passengers
+    }
+    return render(request, 'add_passenger.html', context)
+
+
+def review(request):
+    booking_data = request.session.get('booking_data', None)
+    
+    if 'num' in booking_data:
+        num_passengers = booking_data['num']
+    else:
+        num_passengers = 0
+    
+    c_user = request.user
+    funame = c_user.first_name
+    luname = c_user.last_name
+    if request.method == "POST":
+        source = request.POST.get('from')
+        to = request.POST.get('to')
+        fdate = request.POST.get('fdate')
+        ldate = request.POST.get('ldate')
+        fname = []
+        lname = []
+        age = []
+        passengers = []
+        
+        for x in range(1, num_passengers+1):
+            fname.append('fname'+str(x))
+            fvar = fname[x-1]
+            fvar = request.POST.get(fvar)
+            lname.append('lname'+str(x))
+            lvar = lname[x-1]
+            lvar = request.POST.get(lvar)
+            age.append('age'+str(x))
+            var = age[x-1]
+            var = request.POST.get(var)
+            passenger = [fvar, lvar, var]
+            passengers.append(passenger)
+            
+        booking_id = str(uuid.uuid4())
+            
+        current_site = get_current_site(request)
+        email_subject = "Booking Confirmation - TRAVEL !!"
+        message = render_to_string('booking.html', {
+            'funame': funame,
+            'luname': luname,
+            'domain': current_site.domain,
+            'source': source,
+            'to': to,
+            'fdate': fdate,
+            'ldate': ldate, 
+            'passengers': passengers,
+            'booking_id': booking_id 
+        })
+        
+        email = EmailMessage(
+            email_subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [c_user.email],
+        )
+        email.fail_silently = True
+        email.send()
+        
+        return redirect('/home')  
+     
+    return render(request, 'book.html', {}) 
+        
+        
+    

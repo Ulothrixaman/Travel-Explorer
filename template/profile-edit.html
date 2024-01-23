@@ -41,7 +41,7 @@
                             class="img-fluid img-thumbnail mt-4 mb-1" style="width: 150px; z-index: 1">
                         <p>Update Image:</p>
                     </label>
-                    <input id="image" type="file" name="image" accept="image/*" hidden>
+                    <input id="image" type="file" name="image" accept="image/*" hidden required>
                 </div>
             </div>
             <div class="col-md-9 border-right">
@@ -58,19 +58,19 @@
                     <div class="row mt-3">
                         <div class="col-md-6"><label class="labels">Mobile Number</label><input type="text"
                                 class="form-control" placeholder="enter phone number" name="phone"
-                                value="{{ account.phone }}"></div>
+                                value="{{ account.phone }}" required></div>
                         <div class="col-md-6"><label class="labels">Email ID</label><input type="text"
                                 class="form-control" placeholder="enter email id" name="pemail" value="{{ uemail }}">
                         </div>
                         <div class="col-md-6"><label class="labels">Age</label><input type="number" class="form-control"
-                                placeholder="age" name="age" value="{{ account.age }}"></div>
+                                placeholder="age" name="age" value="{{ account.age }}" required></div>
                         <div class="col-md-6"><label class="labels">Country</label><input type="text"
-                                class="form-control" placeholder="country" name="country" value="{{ account.country }}">
+                                class="form-control" placeholder="country" name="country" value="{{ account.country }}" required>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12"><label class="labels">About</label><textarea name="about" id="" cols="30"
-                                rows="5" class="form-control" style="resize: none;">{{ account.about }}</textarea>
+                                rows="5" class="form-control" style="resize: none;" required>{{ account.about }}</textarea>
                         </div>
                         <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
                                 style="background: #ffa500; border-color: #ffa500;" type="submit">Save

@@ -1,0 +1,33 @@
+{% autoescape off %}
+
+Dear {{funame}} {{luname}},
+
+We are thrilled to inform you that your booking has been successfully completed! Thank you for choosing TRAVEL for your journey.
+
+Below are the details of your booking:
+
+Journey Details:
+
+Booking ID: {{booking_id}}
+{{fdate}}
+{{ldate}}
+{{source}}
+{{to}}
+
+Passenger Details:
+{% for passenger in passengers %}
+
+Passenger {{ forloop.counter }}:
+Name: {{ passenger.0 }} {{ passenger.1 }}
+Age: {{ passenger.2 }}
+{% endfor %}
+We appreciate your trust in our services, and we look forward to providing you with a comfortable and enjoyable travel experience.
+
+
+Safe travels!
+
+Best regards,
+TRAVEL
+amanyadav271215@gmail.com
+
+{% endautoescape %}

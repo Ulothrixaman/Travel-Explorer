@@ -7,7 +7,7 @@
 {%block content %}
 
 <!-- Section Packages Starts -->
-<section class="packages" id="packages" xmlns="http://www.w3.org/1999/html">
+<section class="packages" id="packages" xmlns="http://www.w3.org/1999/html" style="background: #f9f9f9;">
   <div class="container">
 
     <div class="main-text">
@@ -40,6 +40,8 @@
           </div>
         </div>
       </div>
+      {% empty %}
+      No Record Found
       {% endfor %}
 
     </div>
