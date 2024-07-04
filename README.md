@@ -82,6 +82,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Your Name - [Your Email](mailto:youremail@example.com)
+Your Name - [amantech.yadav@gmail.com](mailto:amantech.yadav@gmail.com)
 
 Project Link: [https://github.com/Ulothrixaman/Travel-Explorer](https://github.com/Ulothrixaman/Travel-Explorer)
