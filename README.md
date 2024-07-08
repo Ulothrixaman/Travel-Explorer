@@ -2,6 +2,8 @@
 
 Explore the world with Travel Explorer, your ultimate travel booking companion. Plan your dream vacations, discover exciting destinations, and book flights, hotels, and activities seamlessly. Embark on a journey of a lifetime with our user-friendly full-stack travel booking app. Let the adventure begin!
 
+![Homepage](https://raw.githubusercontent.com/Ulothrixaman/Travel-Explorer/main/images/homepage.png)
+
 ## Features
 
 - **Destination Discovery**: Browse and explore various travel destinations.
@@ -9,6 +11,8 @@ Explore the world with Travel Explorer, your ultimate travel booking companion. 
 - **Hotel Reservations**: Find and book hotels that suit your preferences.
 - **Activity Booking**: Discover and book activities at your travel destination.
 - **User Accounts**: Create and manage user accounts for personalized experiences.
+
+![Packages](https://raw.githubusercontent.com/Ulothrixaman/Travel-Explorer/main/images/packages.png)
 
 ## Technologies Used
 
@@ -67,6 +71,8 @@ Explore the world with Travel Explorer, your ultimate travel booking companion. 
     ```
 
 3. Open your browser and go to `http://127.0.0.1:8000/` to access the application.
+
+![Booking](https://raw.githubusercontent.com/Ulothrixaman/Travel-Explorer/main/images/booking.png)
 
 ## Contributing
 
